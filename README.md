@@ -7,5 +7,5 @@ A plant watering website that reads soil moisture content from sensors to notify
 
 
 #### Authors
-Cameron Eng
+Cameron Eng  
 Peter Wu
