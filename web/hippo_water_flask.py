@@ -19,7 +19,7 @@ def index():
 
 @app.route('/sensor_in', methods=['POST'], strict_slashes=False)
 def sensor_data():
-    """ route to get data from sensors
+    """ route to record data received from  sensors
     """
     data = request.data
     print(data)
@@ -33,6 +33,24 @@ def sensor_data():
     cur.close()
     
     return "<h1 style='color:blue'>got_data</h1>"
+
+
+@app.route('/water_detected', methods=['POST'], strict_slashes=False)
+def sensor_data():
+    """ route to record that watering was detected
+    """
+    data = request.data
+    print(data)
+    dataDict = json.loads(data)
+    sensor_id = dataDict.get('sensor_id')
+    sensor_value = dataDict.get('sensor_value')
+    cur = mysql.connection.cursor()
+    cur.execute('INSERT INTO sensor_watered(sensor_id, sensor_value)\
+                 VALUES(%d, %d)' % (sensor_id, sensor_value))
+    mysql.connection.commit()
+    cur.close()
+    return "sensor_sensed_water"
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1')
