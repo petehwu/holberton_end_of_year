@@ -2,33 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
     <meta name="viewport" content="width=device-width">
     <title>Kelpie</title>
     <link rel="shortcut icon" href="../static/images/icon.png">
     <link rel="stylesheet" href="../static/styles/body.css">
+    <script type="text/javascript" src="../static/scripts/data.js"></script>
   </head>
 <body>
     <h1>Kelpie</h1>
-  <div class="flex-col">
-    <!-- Jinja template from here -->
-    <div class="flex-container">
-      <div> Information:
-        <a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
-      </div>
-      <div> Last Watered:
-        <div> 2019/02/23 </div>
-      </div>
-      <div> Days Since Watered:
-        <div> 18 </div>
-      </div>
-      <div> Frequency:
-        <div> Monthly </div>
-      </div>
-    </div>
-    <!-- To here, everything inbetween -->
-    <!-- Data needed for templating: struct/list with Plant id, Plant type (species),
-      last watered date, Watering Frequency.  I may be forgetting something, but
-      that's the basic list to fill out this template. -->
-  </div>
+    <section class="plant_data">
+	  <div class="flex-col">
+	    <!-- Jinja template from here -->
+	    <div class="flex-container">
+	      <div> Information:
+		<a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
+	      </div>
+	      <div> Last Watered:
+		<div> 2019/02/23 </div>
+	      </div>
+	      <div> Days Since Watered:
+		<div> 18 </div>
+	      </div>
+	      <div> Frequency:
+		<div> Monthly </div>
+	      </div>
+	    </div>
+	    <!-- To here, everything inbetween -->
+	    <!-- Data needed for templating: struct/list with Plant id, Plant type (species),
+	      last watered date, Watering Frequency.  I may be forgetting something, but
+	      that's the basic list to fill out this template. -->
+	  </div>
+     </section>
 </body>
 </html>

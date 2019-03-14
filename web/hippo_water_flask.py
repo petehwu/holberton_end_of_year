@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from flask import request
 from flask_mysqldb import MySQL
 import json
@@ -14,7 +15,7 @@ mysql = MySQL(app)
 def index():
     """ route to display webpage content
     """
-    return "<h1 style='color:blue'>Place Holder for website</h1>"
+    return render_template('basic_page.html')
 
 
 @app.route('/sensor_in', methods=['POST'], strict_slashes=False)
@@ -36,7 +37,7 @@ def sensor_data():
 
 
 @app.route('/water_detected', methods=['POST'], strict_slashes=False)
-def sensor_data():
+def water_data():
     """ route to record that watering was detected
     """
     data = request.data
