@@ -25,7 +25,7 @@ $(function () {
 					'</div>' + 
 					'</div>' +
 					'<div> Frequency: <div>' +
-					pi.water_freq +
+					pi.watering_freq +
 					'</div>' +
 					'</div>' +
 					'</div>';

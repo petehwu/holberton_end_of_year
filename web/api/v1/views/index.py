@@ -26,7 +26,8 @@ def stats():
                 datediff(now(), max(b.created_at)) as days_since_watering\
                 FROM sensor_info a left outer join sensor_watered b\
                 ON a.sensor_id = b.sensor_id\
-                GROUP BY a.sensor_id, a.plant_name, a.watering_freq')
+                GROUP BY a.sensor_id, a.plant_name, a.watering_freq\
+                ORDER BY a.sensor_id DESC')
     print(cur.description)
     if (rows > 0):
         row_headers = [x[0] for x in cur.description]
