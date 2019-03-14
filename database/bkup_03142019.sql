@@ -14,7 +14,18 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+-- Drop database
+DROP DATABASE IF EXISTS hippo_water_db;
 
+-- Create database + user if doesn't exist
+CREATE DATABASE IF NOT EXISTS hippo_water_db;
+CREATE USER IF NOT EXISTS 'hippo_dev'@'localhost';
+SET PASSWORD FOR 'hippo_dev'@'localhost' = 'hippo_dev_pwd';
+GRANT ALL ON hippo_water_db.* TO 'hippo_dev'@'localhost';
+GRANT SELECT ON performance_schema.* TO 'hippo_dev'@'localhost';
+FLUSH PRIVILEGES;
+
+USE hippo_water_db;
 --
 -- Table structure for table `sensor_data`
 --
