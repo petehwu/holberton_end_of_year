@@ -1,13 +1,12 @@
 $(function () {
 	// populate places of the website
-	const uriEndpoint = 'https://hippocamp.site/api/v1/summary';
-	$.ajax({
-		type: 'GET',
-		url: uriEndpoint,
-		data: '{}',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function (results) {
+	console.log('before doPoll');
+	function doPoll() {
+		const uriEndpoint = 'https://hippocamp.site/api/v1/summary';
+		console.log('here');
+		console.log(uriEndpoint);
+		$.get(uriEndpoint, function(results) {
+			$('section.plant_data').empty();
 			console.log('results returned: ' + results.length); // debug message
 			$.each(results, function (index, pi) {
 				const htmlStr = '<div class="flex-container">' +
@@ -28,13 +27,20 @@ $(function () {
 					pi.watering_freq +
 					'</div>' +
 					'</div>' +
+					'<div> Latest Reading: <div>' +
+					pi.sensor_value +
+					'</div>' +
+					'</div>' +
 					'</div>';
-				const article = document.createElement('article');
-				article.innerHTML = htmlStr;
-				$(article).insertAfter('div.flex-col');
+				$('section.plant_data').append(htmlStr);
+				//const article = document.createElement('article');
+				//article.innerHTML = htmlStr;
+				//$(article).insertAfter('section.plant_data');
 			});
-		}
-	});
-	// end populate places of the website
-
+		setTimeout(doPoll, 10000);
+		});
+		// end populate places of the website
+	};
+	doPoll();
+	console.log('after');
 })
