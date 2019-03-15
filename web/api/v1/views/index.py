@@ -3,7 +3,7 @@
 """
 from api.v1.views import app_views
 from flask import jsonify
-from api.v1.views import db
+import MySQLdb
 
 
 @app_views.route('/status')
@@ -15,6 +15,12 @@ def status():
 
 @app_views.route('/summary')
 def stats():
+
+    db = MySQLdb.connect(host="localhost",
+                         user="hippo_dev",
+                         passwd="hippo_dev_pwd",
+                         db="hippo_water_db")
+
     """returns a json with summary of sensor data
     """
     cur = db.cursor()
@@ -59,5 +65,7 @@ def stats():
         for result in res:
             json_data.append(dict(zip(row_headers, result)))
     cur.close()
+    db.close()
+    print(json_data)
 
     return jsonify(json_data)
