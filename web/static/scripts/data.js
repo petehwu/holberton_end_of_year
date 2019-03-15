@@ -1,13 +1,9 @@
 $(function () {
 	// populate places of the website
-	console.log('before doPoll');
 	function doPoll() {
 		const uriEndpoint = 'https://hippocamp.site/api/v1/summary';
-		console.log('here');
-		console.log(uriEndpoint);
 		$.get(uriEndpoint, function(results) {
 			$('section.plant_data').empty();
-			console.log('results returned: ' + results.length); // debug message
 			$.each(results, function (index, pi) {
 				const htmlStr = '<div class="flex-container">' +
 					'<div> Information:' +
@@ -42,5 +38,4 @@ $(function () {
 		// end populate places of the website
 	};
 	doPoll();
-	console.log('after');
 })
