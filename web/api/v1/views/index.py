@@ -57,7 +57,6 @@ def stats():
 		ON e.sensor_id = f.sensor_id \
 		AND e.created_at = f.c_at) AS g \
 	ON d.sensor_id = g.sensor_id ORDER BY d.sensor_id ASC')
-    print(cur.description)
     if (rows > 0):
         row_headers = [x[0] for x in cur.description]
         res = cur.fetchall()
@@ -66,6 +65,5 @@ def stats():
             json_data.append(dict(zip(row_headers, result)))
     cur.close()
     db.close()
-    print(json_data)
 
     return jsonify(json_data)
