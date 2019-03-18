@@ -1,0 +1,26 @@
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+
+.flex-container > div {
+  display: flex;
+  flex-direction:column;
+  background-color: #ffffff;
+  width: 23%;
+  height:75px;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  line-height: 25px;
+  font-size: 15px;
+  vertical-align: top;
+}
