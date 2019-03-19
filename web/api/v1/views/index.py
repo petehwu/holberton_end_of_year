@@ -27,15 +27,19 @@ def stats():
     rows = cur.execute('SELECT \
 	d.sensor_id, \
 	d.plant_name, \
+	d.plant_url, \
 	d.watering_freq, \
-	d.last_watered, \
+	d.last_watered_day, \
+	d.last_watered_date, \
 	d.days_since_watering, \
 	g.sensor_value \
 	FROM ( SELECT \
 		a.sensor_id, \
 		a.plant_name, \
+                a.plant_url, \
 		a.watering_freq, \
-		max(b.created_at) AS last_watered, \
+		date_format(max(b.created_at), "%W") AS last_watered_day, \
+		date_format(max(b.created_at), "%m-%d-%Y") AS last_watered_date, \
 		DATEDIFF(now(), max(b.created_at)) AS days_since_watering \
 		FROM sensor_info AS a \
 		LEFT OUTER JOIN sensor_watered AS b \
