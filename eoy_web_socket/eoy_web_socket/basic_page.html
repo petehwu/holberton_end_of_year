@@ -1,41 +1,77 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
+    <!-- SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/static/scripts/data.js"></script>
-    <meta name="viewport" content="width=device-width">
+    <script src="/static/scripts/data.js"></script-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Kelpie</title>
-    <link rel="shortcut icon" href="/static/images/icon.png">
-    <link rel="stylesheet" type="text/css" href="/static/styles/body.css" />
+    <link rel="shortcut icon" href="./static/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="./static/styles/body.css">
   </head>
 <body>
-    <h1>Kelpie</h1>
-    <section class="plant_data">
-	  <div class="flex-col">
-	    <!-- Jinja template from here -->
-	    <div class="flex-container">
-	      <div> Information:
-		<a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
-	      </div>
-	      <div> Last Watered:
-		<div> 2019/02/23 </div>
-	      </div>
-	      <div> Days Since Watered:
-		<div> 18 </div>
-	      </div>
-	      <div> Frequency:
-		<div> Monthly </div>
-	      </div>
-	      <div> Latest Reading:
-		<div> 0 </div>
-	      </div>
+  <h1>Kelpie</h1>
+  <section class="plant_data">
+	  <div class="flex-container">
+      <div class="row_element">
+        <input type="button" class="poke" name="1" value="Locate" id="poke1">
+      </div>
+	    <div class="row_element"> Information:
+	      <a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
 	    </div>
-	    <!-- To here, everything inbetween -->
-	    <!-- Data needed for templating: struct/list with Plant id, Plant type (species),
-	      last watered date, Watering Frequency.  I may be forgetting something, but
-	      that's the basic list to fill out this template. -->
+	    <div class="row_element"> Last Watered:
+	      <div> 2019/02/23 </div>
+	    </div>
+	    <div class="row_element"> Days Since Watered:
+	      <div> 18 </div>
+	    </div>
+	    <div class="row_element"> Frequency:
+	      <div> Monthly </div>
+      </div>
+      <div class="row_element"> Latest Reading:
+        <div> 0 </div>
+	    </div>
 	  </div>
-     </section>
+    <div class="flex-container-red">
+      <div class="row_element">
+        <input type="button" class="poke" name="2" value="Locate" id="poke2">
+      </div>
+      <div class="row_element"> Information:
+        <a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
+      </div>
+      <div class="row_element"> Last Watered:
+        <div> 2019/03/23 </div>
+      </div>
+      <div class="row_element"> Days Since Watered:
+        <div> -4 </div>
+      </div>
+      <div class="row_element"> Frequency:
+        <div> Weekly </div>
+      </div>
+      <div class="row_element"> Latest Reading:
+        <div> 1 trillion </div>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div class="row_element">
+        <input type="button" class="poke" name="3" value="Locate" id="poke3">
+      </div>
+      <div class="row_element"> Information:
+        <a href="https://en.wikipedia.org/wiki/Zamioculcas"> Zanzibar Gem </a>
+      </div>
+      <div class="row_element"> Last Watered:
+        <div> 2019/03/15 </div>
+      </div>
+      <div class="row_element"> Days Since Watered:
+        <div> 4 </div>
+      </div>
+      <div class="row_element"> Frequency:
+        <div> Daily </div>
+      </div>
+      <div class="row_element"> Latest Reading:
+        <div> -0 </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
