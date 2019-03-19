@@ -11,5 +11,5 @@ To do that, Open the .ino file from this repo, then from the arduino menu, navig
 Before flashing the program to the chip, make sure the WiFi information is changed in the program and also the sensor\_ids are unique and flash to the 
 
 #### Author
-Cameron Eng
+Cameron Eng 
 Peter Wu
