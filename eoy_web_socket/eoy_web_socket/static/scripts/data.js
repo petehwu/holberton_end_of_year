@@ -4,7 +4,15 @@ $(function () {
 		$.get(uriEndpoint, function(results) {
 			$('section.plant_data').empty();
 			$.each(results, function (index, pi) {
-				const htmlStr = '<div class="flex-container">' +
+				let freq = 7;
+				let color = "flex-container";
+				if pi.watering_freq == "Monthly" {
+					freq = 30;
+				}
+				if pi.days_since_watering >= freq {
+					color = "flex-container-red";
+				}
+				const htmlStr = '<div class="' + color + '">' +
 					'<div class="row_element">' +
 					'<input type="button" class="poke"  name="' + pi.sensor_id +'" value="Locate" id="poke' + pi.sensor_id + '" />' +
 					'</div>' +
