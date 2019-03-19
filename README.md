@@ -25,15 +25,15 @@ The way data flows is as follows:
 13)  All devices will receive the broadcast but only the intended device will respond because of the id that is sent with the broadcast.
 
 #### System Setup and software used:
-Ubuntu 18.04
-MySql 5.7.25
-node.js
-express
-socket.IO
-Python 3
-Flask
-gunicorn
-Arduino IDE
+Ubuntu 18.04 
+MySql 5.7.25 
+node.js 
+express 
+socket.IO 
+Python 3 
+Flask 
+gunicorn 
+Arduino IDE 
 
 
 #### Authors
