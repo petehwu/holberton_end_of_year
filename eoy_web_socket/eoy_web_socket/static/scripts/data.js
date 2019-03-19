@@ -14,7 +14,7 @@ $(function () {
 					'</a>' +
 					'</div>' +
 					'<div class="row_element"> Last Watered: <div>' +
-					pi.water_date +
+					pi.watered_date +
 					'</div>' +
 					'</div>' +
 					'<div class="row_element"> Days Since Watered: <div>' +
