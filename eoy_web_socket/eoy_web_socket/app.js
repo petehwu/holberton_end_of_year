@@ -76,6 +76,10 @@ io.on('connection', function (socket) {
 			if(err) throw err;
 		 		console.log('last insert id: ', res.id);
 	 	});
+		con.query('INSERT INTO sensor_data SET ?', data, (err, res) =>{
+	 		if(err) throw err;
+			 	console.log('inserted:');
+ 		});
 		io.sockets.emit('reload', {message: 'watered'});
 		console.log('water received, sensor:  ' + data.sensor_id + ' value ' + data.sensor_value);
   	});
