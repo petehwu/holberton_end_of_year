@@ -5,27 +5,27 @@ $(function () {
 			$('section.plant_data').empty();
 			$.each(results, function (index, pi) {
 				const htmlStr = '<div class="flex-container">' +
-					'<div name="sensor_' + pi.sensor_id + '">' +
+					'<div class="row_element">' +
 					'<input type="button" class="poke"  name="' + pi.sensor_id +'" value="Locate" id="poke' + pi.sensor_id + '" />' +
 					'</div>' +
-					'<div> Information:' +
-					'<a href="https://en.wikipedia.org/wiki/Zamioculcas">' +
+					'<div class="row_element"> Information:' +
+					'<a href="' + pi.plant_url + '">' +
 					pi.plant_name +
 					'</a>' +
 					'</div>' +
-					'<div id="water_' + pi.sensor_id + '"> Last Watered: <div>' +
+					'<div class="row_element"> Last Watered: <div>' +
 					pi.last_watered +
 					'</div>' +
 					'</div>' +
-					'<div id="days_' + pi.sensor_id + '"> Days Since Watered: <div>' +
+					'<div class="row_element"> Days Since Watered: <div>' +
 					pi.days_since_watering +
 					'</div>' +
 					'</div>' +
-					'<div> Frequency: <div>' +
+					'<div class="row_element"> Frequency: <div>' +
 					pi.watering_freq +
 					'</div>' +
 					'</div>' +
-					'<div name="reading_' + pi.sensor_id + '"> Latest Reading: <div>' +
+					'<div class="row_element"> Latest Reading: <div>' +
 					pi.sensor_value +
 					'</div>' +
 					'</div>' +
