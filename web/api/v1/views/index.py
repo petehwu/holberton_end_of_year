@@ -52,14 +52,15 @@ def stats():
 		FROM ( SELECT \
 			sensor_id, \
 			sensor_value, \
-			created_at \
+			created_at, \
+			id \
 			FROM sensor_data) AS e \
 		JOIN (SELECT \
 			sensor_id, \
-			MAX(created_at) AS c_at \
+                        MAX(id) as c_id \
 			FROM sensor_data GROUP BY sensor_id) AS f \
 		ON e.sensor_id = f.sensor_id \
-		AND e.created_at = f.c_at) AS g \
+		AND e.id = f.c_id) AS g \
 	ON d.sensor_id = g.sensor_id ORDER BY d.sensor_id ASC')
     if (rows > 0):
         row_headers = [x[0] for x in cur.description]
