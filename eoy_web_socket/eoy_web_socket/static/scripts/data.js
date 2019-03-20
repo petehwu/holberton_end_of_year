@@ -35,7 +35,7 @@ $(function () {
 					'</div>' +
 					'<div class="row_element"> Latest Reading: <div>' +
 					pi.sensor_value +
-					'<div class="popover">' +
+					'<div class="popover" name="' + pi.sensor_id + '">' +
 					'</div>'
 					'</div>' +
 					'</div>' +

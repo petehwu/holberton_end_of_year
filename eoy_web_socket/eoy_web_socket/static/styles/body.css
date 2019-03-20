@@ -39,11 +39,11 @@ div.row_element {
   margin-bottom: 5px;
   text-align: center;
   line-height: 19px;
-  font-size: 15px;
+  font-size: 1rem;
   vertical-align: top;
   align-items: center;
   justify-content: center;
-
+  overflow: hidden;
 }
 
 input.poke {
