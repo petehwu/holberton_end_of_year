@@ -6,10 +6,10 @@ $(function () {
 			$.each(results, function (index, pi) {
 				let freq = 7;
 				let color = "flex-container";
-				if pi.watering_freq == "Monthly" {
+				if (pi.watering_freq == "Monthly") {
 					freq = 30;
 				}
-				if pi.days_since_watering >= freq {
+				if (pi.days_since_watering >= freq) {
 					color = "flex-container-red";
 				}
 				const htmlStr = '<div class="' + color + '">' +
