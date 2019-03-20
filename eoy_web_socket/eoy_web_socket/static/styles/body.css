@@ -2,6 +2,12 @@
   font-family: "Lucida Console", Monaco, monospace;
 }
 
+.HippoCamp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
