@@ -9,23 +9,26 @@
 }
 
 .flex-container {
+  border-radius:10px;
   display: flex;
   justify-content: center;
   background-color: #30a9de;
 }
 
 .flex-container-red {
+  border-radius:10px;
   display: flex;
   justify-content: center;
   background-color: #e53a40;
 }
 
 div.row_element {
+  border-radius:5px;
   display: flex;
   flex-direction:column;
   background-color: #f1f1f1;
   width: 16.3%;
-  height:75px;
+  height:60px;
   margin-left: .1%;
   margin-right: .1%;
   margin-top: 5px;
