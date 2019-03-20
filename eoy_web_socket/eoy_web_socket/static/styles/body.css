@@ -2,6 +2,10 @@
   font-family: "Lucida Console", Monaco, monospace;
 }
 
+body {
+  background-color: #f7f7f7;
+}
+
 .HippoCamp {
   display: flex;
   justify-content: center;
@@ -39,9 +43,33 @@ div.row_element {
   vertical-align: top;
   align-items: center;
   justify-content: center;
+
 }
 
 input.poke {
   font-size:80%;
   width:80%;
+}
+
+.popover {
+  display: none;
+  position:absolute;
+  right:50px;
+  width: 50%;
+  max-height: 300px;
+  line-height: 200%;
+  z-index: 1;
+  background-color: #FAFAFA;
+  border: #DDDDDD solid 1px;
+  border-radius: 4px;
+  margin-top: -4px;
+  margin-left: -1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  word-wrap: break-word;
+  overflow-y: hidden;
+}
+
+.row_element:hover .popover {
+  display: inline-block;
 }
