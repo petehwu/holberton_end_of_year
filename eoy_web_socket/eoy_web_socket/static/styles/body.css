@@ -52,11 +52,10 @@ input.poke {
 }
 
 .popover {
-  display: none;
+  display:none;
   position:absolute;
   right:50px;
   width: 50%;
-  max-height: 300px;
   line-height: 200%;
   z-index: 1;
   background-color: #FAFAFA;
@@ -72,4 +71,5 @@ input.poke {
 
 .row_element:hover .popover {
   display: inline-block;
+  height: 150px;
 }
