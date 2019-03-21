@@ -23,17 +23,18 @@ def get_graph_date(sensor_id):
                          db="hippo_water_db")
     cur = db.cursor()
     rows = cur.execute('SELECT \
-            sensor_value \
+            UNIX_TIMESTAMP(created_at) * 1000 as x, \
+            sensor_value as y \
             FROM sensor_data \
             WHERE sensor_id = ' + sensor_id + ' ORDER BY id ASC')
     json_data = []
     if (rows > 0):
-        row_headers = ['y']
+        row_headers = [x[0] for x in cur.description]
         res = cur.fetchall()
         for result in res:
             json_data.append(dict(zip(row_headers, result)))
     else:
-        json_data.append(dict(y=0))
+        json_data.append(dict(x=0,y=0))
     cur.close()
     db.close()
 
