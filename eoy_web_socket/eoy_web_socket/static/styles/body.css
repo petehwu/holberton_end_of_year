@@ -54,7 +54,7 @@ input.poke {
 .popover {
   display:none;
   position:absolute;
-  right:50px;
+  right:15vw;
   width: 50%;
   line-height: 200%;
   z-index: 1;
