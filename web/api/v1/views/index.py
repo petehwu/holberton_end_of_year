@@ -12,10 +12,37 @@ def status():
     """
     return jsonify({"status": "OK"})
 
+@app_views.route('graph/<sensor_id>',
+                 strict_slashes=False, methods=['GET'])
+def get_graph_date(sensor_id):
+    """ The method gets the data for graphying moisture levels
+    """
+    db = MySQLdb.connect(host="localhost",
+                         user="hippo_dev",
+                         passwd="hippo_dev_pwd",
+                         db="hippo_water_db")
+    cur = db.cursor()
+    rows = cur.execute('SELECT \
+            sensor_value \
+            FROM sensor_data \
+            WHERE sensor_id = ' + sensor_id + ' ORDER BY id ASC')
+    if (rows > 0):
+        row_headers = ['y']
+        res = cur.fetchall()
+        json_data = []
+        for result in res:
+            json_data.append(dict(zip(row_headers, result)))
+    cur.close()
+    db.close()
 
-@app_views.route('/summary')
+    return jsonify(json_data)
+
+@app_views.route('/summary',
+                 strict_slashes=False, methods=['GET'])
 def stats():
-
+    """ this method gets the summary information to
+    populate the rows in the website
+    """
     db = MySQLdb.connect(host="localhost",
                          user="hippo_dev",
                          passwd="hippo_dev_pwd",
@@ -29,10 +56,10 @@ def stats():
 	d.plant_name, \
 	d.plant_url, \
 	d.watering_freq, \
-	d.last_watered_day, \
-	d.last_watered_date, \
-	d.days_since_watering, \
-	g.sensor_value \
+	IFNULL(d.last_watered_day, "No Data Found!") as last_watered_day, \
+	IFNULL(d.last_watered_date, "No Data Found!") as last_watered_date, \
+	IFNULL(d.days_since_watering, "No Data Found!") as days_since_watering, \
+	IFNULL(g.sensor_value, "No Data Found!") as sensor_value \
 	FROM ( SELECT \
 		a.sensor_id, \
 		a.plant_name, \
