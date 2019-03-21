@@ -66,7 +66,7 @@ $(function () {
 		$.get(graph + $(this).attr("name"), function(results) {
 			//var chart = new CanvasJS.Chart($(this).attr("id"), {
 			var chart = new CanvasJS.Chart( the_id, {
-				animationEnabled: true,
+				animationEnabled: false,
 				theme: "light2",
 				title:{
 					text: "Moisture Sensor Historical Data"
@@ -76,6 +76,7 @@ $(function () {
 				      },
 				data: [{
 					type: "line",
+					xValueType: "dateTime",
 					dataPoints: results
 	       			      }]
 			});
