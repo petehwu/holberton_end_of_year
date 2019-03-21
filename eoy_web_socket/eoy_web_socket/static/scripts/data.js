@@ -35,7 +35,7 @@ $(function () {
 					'</div>' +
 					'<div class="row_element"> Latest Reading: <div>' +
 					pi.sensor_value +
-					'<div class="popover" name="' + pi.sensor_id + '">' +
+					'<div class="popover" name="' + pi.sensor_id + '" id="popover' + pi.sensor_id +'">' +
 					'</div>'
 					'</div>' +
 					'</div>' +
@@ -60,5 +60,27 @@ $(function () {
 	$(document).on('click', '.poke', function(){
 		socket.emit('arduino', $(this).attr("name"));
 	})
+	const graph = 'https://hippocamp.site/api/v1/graph/';
+	$(document).on('mouseover', '.popover', function(){
+		const the_id = $(this).attr('id');
+		$.get(graph + $(this).attr("name"), function(results) {
+			//var chart = new CanvasJS.Chart($(this).attr("id"), {
+			var chart = new CanvasJS.Chart( the_id, {
+				animationEnabled: true,
+				theme: "light2",
+				title:{
+					text: "Moisture Sensor Historical Data"
+				      },
+				axisY:{
+					includeZero: false
+				      },
+				data: [{
+					type: "line",
+					dataPoints: results
+	       			      }]
+			});
+		chart.render();
+		}); //get(uriendpoint
 
+	}); //document.on mouseover
 })

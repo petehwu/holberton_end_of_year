@@ -26,12 +26,14 @@ def get_graph_date(sensor_id):
             sensor_value \
             FROM sensor_data \
             WHERE sensor_id = ' + sensor_id + ' ORDER BY id ASC')
+    json_data = []
     if (rows > 0):
         row_headers = ['y']
         res = cur.fetchall()
-        json_data = []
         for result in res:
             json_data.append(dict(zip(row_headers, result)))
+    else:
+        json_data.append(dict(y=0))
     cur.close()
     db.close()
 
