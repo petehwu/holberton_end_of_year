@@ -2,19 +2,20 @@
 #include "esp_wpa2.h"
 #include <SocketIOClient.h>
 #include <U8x8lib.h>
+#include <WiFi.h>
 #define EAP_ANONYMOUS_IDENTITY ""
 #define EAP_IDENTITY ""
 #define EAP_PASSWORD ""
 #define sensor 36
 
-SocketIOClient client;
+
 //make sure sensor_id are unique for each sensor
-const String sensor_id = "5";
-const char *ssid = "";
-const char *password = "";
+const String sensor_id = "";
+//const char* ssid = "Anaxi";
+//const char* password = "anaxirules@972!";
 const String pre = "{\"sensor_id\" : " + sensor_id +", \"sensor_value\" : ";
 const String post = "}";
-
+int failedConnects = 0;
 char host[] = "hippocamp.site";
 int port = 443;
 extern String RID;
@@ -23,8 +24,10 @@ extern String Rcontent;
 
 unsigned long previousMillis = 0;
 unsigned long sensorPreviousMillis = 0;
+unsigned long heartBeatMillis = 0;
 long interval = 60000;
 long sensorInterval = 10000;
+long heartBeatInterval = 30000;
 int counter = 0;
 unsigned long lastsend = 0;
 int totval = 0;
@@ -59,6 +62,8 @@ extern String RID;
 extern String Rname;
 extern String Rcontent;
 
+SocketIOClient client;
+
 void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -76,7 +81,8 @@ void setup()
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
-  /*  only needed for wpa2 enterprixe
+/*
+  //  only needed for wpa2 enterprixe
     WiFi.mode(WIFI_STA); //init wifi mode
     esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY)); 
     esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
@@ -84,7 +90,7 @@ void setup()
     esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
     esp_wifi_sta_wpa2_ent_enable(&config); //set config settings to enable function
     WiFi.begin(ssid);
-    */
+  */  
 
   WiFi.begin(ssid, password);
 
@@ -98,6 +104,7 @@ void setup()
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+ 
   u8x8.drawString(0, 1, "Connected To:");
   (String(ssid)).toCharArray(outStr, 16);
   u8x8.drawString(0, 2, outStr);
@@ -119,7 +126,10 @@ void setup()
     client.send("connection", "message", "first send");
     Serial.println("after sending first message");
   }
+  
+   
 }
+
 void loop() {
   String sendMessage;
   int sensorVal;
@@ -129,10 +139,25 @@ void loop() {
   {
     Serial.println("try to connect again");
     if (! client.connect(host, port))
+    {
+      if (failedConnects > 3)
+      {
+        ESP.restart();
+      }
+      failedConnects++;
       Serial.println("connection failed again.  giving up");
+    }
+      
   }
-  if (currentMillis - sensorPreviousMillis > sensorInterval )
+  if (currentMillis - heartBeatMillis >= heartBeatInterval)
   {
+    client.heartbeat(0);
+    heartBeatMillis = currentMillis;
+  }
+    
+  if (currentMillis - sensorPreviousMillis >= sensorInterval )
+  {
+    //client.heartbeat(0);
     sensorPreviousMillis = currentMillis;
     sensorVal = analogRead(sensor);
     //re-draw screen every 10 seconds
@@ -204,6 +229,7 @@ void loop() {
         digitalWrite(25, LOW);
       else
         digitalWrite(25, HIGH);
+        RID = "";
     }
   }
 
