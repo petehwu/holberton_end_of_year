@@ -9,9 +9,9 @@ In this project we use the ESP32 Arduino chip connected to capacitative moisture
 
 This system consists of a nginx server acting as a proxy to route traffic.  The nginx server is connected to a node.js server using express andSocket.IO and a gunicorn/Flask server.  The node.js server is used to serve all web content and maintain websocket connections to the sensors while the gunicorn/Flask server is used to serve API requests to obtain data from the backend database.  The backend database that stores all data is a MySql database server.
 
-The way data flows is as follows: 
+#### System Architecture and data flow:  
 1) The Node.js server waits for connections from any sensor or web client.
-2) The moisture sensor connects to the nginx server via https and then is routed to the Node.js server and a socket.IO connection is created and maintained by the Node.js server.
+2) The moisture sensor connects to the nginx server via https and then is routed to the Node.js server and a socket.IO web socket connection is created and maintained by the Node.js server.
 3) The moisture sensors are programmed to send data to the server every 60 seconds.
 4) When the Node.js server receives data from the sensors the data is written to the MySql database.
 5) When a web client(browser) connects to the website, the request is routed to the node.js server to serve the page and the .html is sent to the client.
@@ -25,15 +25,15 @@ The way data flows is as follows:
 13)  All devices will receive the broadcast but only the intended device will respond because of the id that is sent with the broadcast.
 
 #### System Setup and software used:
-Ubuntu 18.04 
-MySql 5.7.25 
-node.js 
-express 
-socket.IO 
+Ubuntu 18.04  
+MySql 5.7.25  
+node.js   
+express   
+socket.IO    
 Python 3 
-Flask 
-gunicorn 
-Arduino IDE 
+Flask   
+gunicorn   
+Arduino IDE   
 
 
 #### Authors
